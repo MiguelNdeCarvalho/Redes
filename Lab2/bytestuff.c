@@ -30,7 +30,7 @@ void bytedestuff(char *input_string, char *output_string)
 
     while(input_string[i]!='\0')
     {
-        if (input_string[i] == '0')
+        if (input_string[i] == '0' && input_string[i-1] == 'H')
         {
             i++;
             continue;
