@@ -38,12 +38,12 @@ void hcode(char* input_string, char* output_string)
 		c_bit1 = ((( 0b1000 & hex_1 ) >>3 ) ^ (( 0b0100 & hex_1 ) >>2 ) ^ ( 0b0001 & hex_1 )) <<6;
 		c_bit2 = ((( 0b1000 & hex_1 ) >>3 ) ^ (( 0b0010 & hex_1 ) >>1 ) ^ ( 0b0001 & hex_1 )) <<5;
 		c_bit3 = ((( 0b0100 & hex_1 ) >>2 ) ^ (( 0b0010 & hex_1 ) >>1 ) ^ ( 0b0001 & hex_1 )) <<4;
-		aux_1 = c_bit1 | c_bit2 | c_bit3 | hex_1;
-		
+		aux_1 = c_bit1 | c_bit2 | c_bit3 | hex_1 | 0b10000000;
+
 		c_hexbit1 = ((( 0b1000 & hex_2 ) >>3 ) ^ (( 0b0100 & hex_2 ) >>2 ) ^ ( 0b0001 & hex_2 )) <<6;             
     c_hexbit2 = ((( 0b1000 & hex_2 ) >>3 ) ^ (( 0b0010 & hex_2 ) >>1 ) ^ ( 0b0001 & hex_2 )) <<5;             
     c_hexbit3 = ((( 0b0100 & hex_2 ) >>2 ) ^ (( 0b0010 & hex_2 ) >>1 ) ^ ( 0b0001 & hex_2 )) <<4;
-    aux_2 = c_hexbit1 | c_hexbit2 | c_hexbit3 | hex_2;
+    aux_2 = c_hexbit1 | c_hexbit2 | c_hexbit3 | hex_2 | 0b10000000;
 
 		output_string[j] = aux_1;
 		output_string[j+1] = aux_2;
@@ -107,7 +107,7 @@ void hdecode(char* input_string, char* output_string)
 
 void main()
 {
-  char a[100], b[100], c[100], d[100], e[100], f[100];
+  char a[100], b[200], c[200], d[200], e[200], f[100];
 
   strcpy ( a , "ABCDEFGHHHHHIJKLMNOPQR1234567890abcdefghijklmnopqrstuvxyz  :-))))))");
   
