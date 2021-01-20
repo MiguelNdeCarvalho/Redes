@@ -57,16 +57,19 @@ int main(int argc, char const *argv[])
           exit(EXIT_FAILURE); 
         }
 
-      printf("One client has connected.\n");
-
-      // Get current Time Stuff
-      time_t rawtime;
-      struct tm * timeinfo;
-      time ( &rawtime );
-      timeinfo = localtime ( &rawtime );
-
-      send(new_socket, asctime (timeinfo), strlen(asctime (timeinfo)) , 0);
+      printf("Client connected.\n");
       
+      while (strncmp(buffer, "quit", 4)) {
+        bzero(buffer, BUFSIZE);
+      
+        recv(new_socket, buffer, BUFSIZE-1, 0);
+      
+        printf("Client says: '%s'\n", buffer);
+        send(new_socket, buffer, strlen(buffer), 0 );
+    
+        printf("Replied to client\n");
+      }
+
       buffer[0] = 0;
       
       close(new_socket);
